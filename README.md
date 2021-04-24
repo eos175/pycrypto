@@ -1,6 +1,6 @@
 # PyCrypto
 
-> rapida lib para criptografia
+> rapida lib para criptografia by [eos175](https://github.com/eos175)
 
 **PyCrypto** usa [pycryptodome](https://pycryptodome.readthedocs.io/en/latest/src/introduction.html) para AES y [fastecdsa](https://github.com/AntonKueltz/fastecdsa) para ECC. Estos paquetes estan escrito en `C` y tiene *hw acceleration*
 
