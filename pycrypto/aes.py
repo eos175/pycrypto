@@ -20,8 +20,8 @@ def cfb128_decrypt(data: bytes, key: bytes, iv: bytes) -> bytes:
 
 
 
-def gcm_encrypt(data: bytes, key: bytes, nonce: bytes) -> bytes:
-    cipher = AES.new(key, AES.MODE_GCM, nonce)
+def gcm_encrypt(data: bytes, key: bytes, nonce: bytes, mac_len: int = None) -> bytes:
+    cipher = AES.new(key, AES.MODE_GCM, nonce, mac_len=mac_len)
     return cipher.encrypt(data), cipher.digest()
 
 def gcm_decrypt(data: bytes, key: bytes, nonce: bytes, tag: bytes) -> bytes or None:
@@ -35,8 +35,8 @@ def gcm_decrypt(data: bytes, key: bytes, nonce: bytes, tag: bytes) -> bytes or N
 
 
 
-def ccm_encrypt(data: bytes, key: bytes, nonce: bytes) -> bytes:
-    cipher = AES.new(key, AES.MODE_CCM, nonce)
+def ccm_encrypt(data: bytes, key: bytes, nonce: bytes, mac_len: int = None) -> bytes:
+    cipher = AES.new(key, AES.MODE_CCM, nonce, mac_len=mac_len)
     return cipher.encrypt(data), cipher.digest()
 
 def ccm_decrypt(data: bytes, key: bytes, nonce: bytes, tag: bytes) -> bytes or None:
