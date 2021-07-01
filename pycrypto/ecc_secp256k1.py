@@ -33,8 +33,8 @@ def decode_public_key(b: bytes):
     
 
 
-def ecdh_generate_keys():
-    priv_key = keys.gen_private_key(CURVE, urandom)
+def ecdh_generate_keys(randfunc=urandom):
+    priv_key = keys.gen_private_key(CURVE, randfunc)
     pub_key = keys.get_public_key(priv_key, CURVE)
     return int_to_bytes(priv_key), encode_public_key(pub_key)
 

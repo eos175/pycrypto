@@ -1,4 +1,4 @@
-from pycrypto.ecc_secp256k1 import ecdh_generate_keys
+from pycrypto import ecc_secp256k1 as ecc
 from pycrypto.os import urandom_sw
 from pycrypto import aes
 
@@ -32,6 +32,7 @@ print(aes.gcm_decrypt(out, key, nonce, tag_len))
 """
 
 
+"""
 
 key = urandom_sw(32)
 iv = urandom_sw(16)
@@ -43,4 +44,18 @@ print(f"{out.hex()=}")
 print(aes.cbc_decrypt(out, key, iv))
 
 
+"""
+
+
+
+priv1, pub1 = ecc.ecdh_generate_keys(urandom_sw)
+priv2, pub2 = ecc.ecdh_generate_keys(urandom_sw)
+
+
+sig = ecc.ecdsa_sign_sha256(priv1, data)
+
+print(f"{priv1.hex()=} {pub1.hex()=} {sig.hex()=}")
+
+
+print(ecc.ecdsa_verify_sha256(pub1, sig, data))
 
