@@ -1,39 +1,37 @@
 # PyCrypto
 
-> rapida lib para criptografia by [eos175](https://github.com/eos175)
+> A fast cryptography library by [eos175](https://github.com/eos175)
 
-**PyCrypto** usa [pycryptodome](https://pycryptodome.readthedocs.io/en/latest/src/introduction.html) para AES y [fastecdsa](https://github.com/AntonKueltz/fastecdsa) para ECC. Estos paquetes estan escrito en `C` y tiene *hw acceleration*
-
+**PyCrypto** leverages [pycryptodome](https://pycryptodome.readthedocs.io/en/latest/src/introduction.html) for AES and [fastecdsa](https://github.com/AntonKueltz/fastecdsa) for ECC. These packages are written in `C` and benefit from hardware acceleration.
 
 ## Installation
 
 ```bash
+sudo dnf install python-devel gmp-devel
+```
+
+```bash
 python3 -m venv .venv
 . .venv/bin/activate
-pip install git+ssh://git@github.com/eos175/pycrypto.git
+pip install https://github.com/eos175/pycrypto.git
 ```
 
 ## API
 
-
-AES
-
+### AES
 
 ```python
-
 def cfb128_encrypt(data: bytes, key: bytes, iv: bytes) -> bytes: ...
 def cfb128_decrypt(data: bytes, key: bytes, iv: bytes) -> bytes: ...
 
-def gcm_encrypt(data: bytes, key: bytes, nonce: bytes) -> bytes:
+def gcm_encrypt(data: bytes, key: bytes, nonce: bytes) -> bytes: ...
 def gcm_decrypt(data: bytes, key: bytes, nonce: bytes, tag: bytes) -> bytes or None: ...
 
 def ccm_encrypt(data: bytes, key: bytes, nonce: bytes) -> bytes: ...
 def ccm_decrypt(data: bytes, key: bytes, nonce: bytes, tag: bytes) -> bytes or None: ...
-
 ```
 
+## TODO
 
-## ToDo
-
-- [ ] agregar el resto de la API al readme
-- [x] crear setup
+- [ ] Add the rest of the API to the README
+- [x] Create setup
