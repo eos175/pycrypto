@@ -13,7 +13,7 @@ sudo dnf install python-devel gmp-devel
 ```bash
 python3 -m venv .venv
 . .venv/bin/activate
-pip install https://github.com/eos175/pycrypto.git
+pip install git+https://github.com/eos175/pycrypto.git
 ```
 
 ## API
