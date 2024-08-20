@@ -3,7 +3,7 @@ from fastecdsa.curve import secp256k1
 from fastecdsa.point import Point
 from os import urandom
 
-from .hashe import sha256
+from .hash import sha256
 
 CURVE = secp256k1
 
@@ -21,7 +21,6 @@ def int_to_bytes(n: int, n_bits: int = 256) -> bytes:
 def bytes_to_int(b: bytes) -> int:
     return int.from_bytes(b, "big")
 
-
     
 def encode_public_key(p: Point) -> bytes:
     return int_to_bytes(p.x) + int_to_bytes(p.y)
@@ -30,7 +29,6 @@ def encode_public_key(p: Point) -> bytes:
 def decode_public_key(b: bytes):
     x, y = bytes_to_int(b[:32]), bytes_to_int(b[32:])
     return Point(x, y, curve=CURVE)
-    
 
 
 def ecdh_generate_keys(randfunc=urandom):
@@ -44,7 +42,6 @@ def ecdh_shared_secret(priv_key: bytes, others_pub: bytes):
     d = bytes_to_int(priv_key)
     z = (Qp * d).x
     return int_to_bytes(z)
-
 
 
 def ecdsa_sign_sha256(priv_key: bytes, data: bytes):

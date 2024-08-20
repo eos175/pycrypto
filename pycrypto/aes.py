@@ -24,26 +24,20 @@ def cbc_decrypt(data: bytes, key: bytes, iv: bytes) -> bytes:
     return data[:-padding]
 
 
-
-
-
 def cfb128_encrypt(data: bytes, key: bytes, iv: bytes) -> bytes:
     cipher = AES.new(key, AES.MODE_CFB, iv, segment_size=128)
     return cipher.encrypt(data)
-
 
 def cfb128_decrypt(data: bytes, key: bytes, iv: bytes) -> bytes:
     cipher = AES.new(key, AES.MODE_CFB, iv, segment_size=128)
     return cipher.decrypt(data)
 
 
-
 def gcm_encrypt(data: bytes, key: bytes, nonce: bytes, tag_len: int = 16) -> bytes:
     cipher = AES.new(key, AES.MODE_GCM, nonce, mac_len=tag_len)
     return cipher.encrypt(data) + cipher.digest()
 
-
-def gcm_decrypt(data: bytes, key: bytes, nonce: bytes, tag_len: int = 16) -> bytes or None:
+def gcm_decrypt(data: bytes, key: bytes, nonce: bytes, tag_len: int = 16) -> bytes | None:
     data, tag = data[:-tag_len], data[-tag_len:]
     cipher = AES.new(key, AES.MODE_GCM, nonce, mac_len=tag_len)
     out = cipher.decrypt(data)
@@ -54,12 +48,11 @@ def gcm_decrypt(data: bytes, key: bytes, nonce: bytes, tag_len: int = 16) -> byt
     return out
 
 
-
 def ccm_encrypt(data: bytes, key: bytes, nonce: bytes, tag_len: int = 16) -> bytes:
     cipher = AES.new(key, AES.MODE_CCM, nonce, mac_len=tag_len)
     return cipher.encrypt(data) + cipher.digest()
 
-def ccm_decrypt(data: bytes, key: bytes, nonce: bytes, tag_len: int = 16) -> bytes or None:
+def ccm_decrypt(data: bytes, key: bytes, nonce: bytes, tag_len: int = 16) -> bytes | None:
     data, tag = data[:-tag_len], data[-tag_len:]
     cipher = AES.new(key, AES.MODE_CCM, nonce, mac_len=tag_len)
     out = cipher.decrypt(data)
@@ -68,4 +61,3 @@ def ccm_decrypt(data: bytes, key: bytes, nonce: bytes, tag_len: int = 16) -> byt
     except ValueError:
         return None
     return out
-    

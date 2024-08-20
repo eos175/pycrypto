@@ -21,10 +21,7 @@ TODO(eos175)
 
 
 class Nonce:
-
-    def __init__(self, 
-        fix: int or bytes
-    ):
+    def __init__(self, fix: int | bytes):
         if isinstance(fix, int):
             tmp = fix << 64
         else:
